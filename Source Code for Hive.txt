@@ -1,0 +1,23 @@
+Source Code for Hive:
+
+Step 1:
+Create a table.
+hive> CREATE TABLE IF NOT EXISTS tweet (tweet_id string, writer string, post_date date, body string, comment_num int, retweet_num int, like_num int)
+    > ROW FORMAT DELIMITED
+    > FIELDS TERMINATED BY ','
+    > LINES TERMINATED BY '\n';
+
+Step 2:
+Load data into the table.
+hive> LOAD DATA LOCAL INPATH '/home/hadoop/IST3134/Tweet.csv' INTO TABLE tweet;
+
+step 3:
+Create a table for the wordcount.
+hive> Create table wordcount as SELECT word, COUNT(*) FROM tweet LATERAL VIEW explode(split(body, ‘ ‘)) lTable as word GROUP BY word;
+
+Step 4:
+To view the results of the wordcount.
+hive> Select * from wordcount;
+
+Limit the results displayed. 
+hive> Select * from wordcount limit 10;
