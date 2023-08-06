@@ -40,7 +40,7 @@ Submit the MapReduce Job.
 $ hadoop jar wc.jar stubs.WordCount /Tweet.csv wordcounts
 
 Step 11:
-View the results.
+Review the results.
 $ hadoop fs -ls wordcounts
 
 Step 12:
