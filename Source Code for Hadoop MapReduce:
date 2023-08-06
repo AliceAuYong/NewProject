@@ -1,1 +1,48 @@
 Source Code for Hadoop MapReduce:
+
+Step 1:
+Change the user from ubuntu to hadoop.
+$ sudo su - hadoop
+
+Step 2:
+Start the cluster.
+$ start-all.sh
+
+Step 3:
+Change the directory.
+$ cd IST3134/
+
+Step 4:
+Unzip the files.
+$ unzip wordcount.zip
+$ unzip BDADataset.zip
+
+Step 5:
+Upload the csv file to the HDFS server.
+$ hadoop fs -put Tweet.csv /
+
+Step 6:
+$ cd ~/workspace/wordcount/src
+
+Step 7:
+$ ls stubs
+
+Step 8:
+Compile the three Java classes.
+$ javac -classpath `hadoop classpath` stubs/*.java
+
+Step 9:
+Collect your compiled Java files into a JAR file.
+$ jar cvf wc.jar stubs/*.class
+
+Step 10:
+Submit the MapReduce Job.
+$ hadoop jar wc.jar stubs.WordCount /Tweet.csv wordcounts
+
+Step 11:
+View the results.
+$ hadoop fs -ls wordcounts
+
+Step 12:
+View the contents of the output for the MapReduce job.
+$ hadoop fs -cat wordcounts/part-r-00000 | less
